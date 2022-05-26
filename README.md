@@ -18,4 +18,7 @@ KuhRoulette für den SUS Buer
 - 10x10 Feld -> Array 100 Stellen, Zeilen = X % 10, Reihe = X / 10 (abgerundet)
 - EventListener auf Feld, Nummer muss als ID gespeichert werden
 
+
+## Abrufbar unter
+https://mbulti.github.io/KuhRoulette/
 Work in Progress ..
