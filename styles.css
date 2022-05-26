@@ -10,3 +10,7 @@
     background-color:yellow;
     font-weight:bold; color:red;
 }
+.grid td.multiclicked {
+    background-color:orange;
+    font-weight:bold; color:green;
+}
