@@ -28,28 +28,10 @@ var grid = createGrid(10, 10, function(el,row,col,i) {
 
     const guess = {
         Index: calcIndex,
-        Value: "Test123"
+        Value: prompt("Name")
     }
     db.collection(currentCollection).add(guess).catch(err => console.log(err));
-
-
-    // // TODO: add input for name when clicked
-    // if (el.className === '') {
-    //     el.className='clicked';
-    //     el.innerHTML = "X"
-    //     arrNames[calcIndex] = ["Test"]
-    // }
-    // else {
-    //     if (arrNames[calcIndex] != null && arrNames[calcIndex].length > 0) {
-    //         console.log("Append")
-    //         el.className='multiclicked';
-    //         arrNames[calcIndex].push("Test" + arrNames[calcIndex].length);
-    //     } else {   
-    //         el.className='';
-    //         el.innerHTML = ""
-    //     }
-    // }
-    console.log(arrNames)
+    //console.log(arrNames)
 });
 var table = createGuessTable();
 
