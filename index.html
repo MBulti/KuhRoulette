@@ -8,18 +8,24 @@
 </head>
 <body>
     <p>SUS</p>
-    <select id="roundselect" name="roundselect" class="select">
-        <option value="1">Runde 1</option>
-        <option value="">Neue Runde</option>
-    </select><br>
-    <fieldset>
-        <legend>Modus auswählen</legend>
-        <input type="radio" id="addUser" name="markfield" value="new" checked>
-        <label for="addUser">Teilnehmer eintragen</label><br>
-        <input type="radio" id="selectWinner" name="markfield" value="win">
-        <label for="selectWinner">Siegerfeld auswählen</label><br>
-    </fieldset>
-    
+    <div id="settings">
+        <fieldset>
+            <legend>Spielrunde</legend>
+            <select id="roundselect" name="roundselect" class="select">
+                <option value="1">Runde 1</option>
+                <option value="">Neue Runde</option>
+            </select>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Modus</legend>
+            <input type="radio" id="addUser" name="markfield" value="new" checked>
+            <label for="addUser">Teilnehmer eintragen</label><br>
+            <input type="radio" id="selectWinner" name="markfield" value="win">
+            <label for="selectWinner">Siegerfeld auswählen</label><br>
+        </fieldset>
+    </div>
+
         <table id="guesstable" class="table"></table>
         <table id="fieldgrid" class="grid"></table>
     

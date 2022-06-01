@@ -23,3 +23,12 @@
     background-color:blue;
     font-weight:bold; color:green;
 }
+
+.settings {
+    display: flex;
+}
+fieldset{
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+}
