@@ -39,13 +39,13 @@ function changeRound(value) {
     grid = createGuessGrid(); 
 }
 function createGuessGrid() {
-    return createGrid(10, 10, function(el,row,col,i) {
-        let calcIndex = row * 10 + col;
+    return createGrid(11, 11, function(el,row,col,i) {
+        let calcIndex = (row - 1) * 10 + (col - 1);
         console.log("element:",el);
         console.log("row:",row);
         console.log("col:",col);
     
-        let guessName = prompt("Name");
+        let guessName = prompt("Bitte Namen eingeben für Feld " + String.fromCharCode(64 + col) + row + ":");
         if (guessName) {
     
             const guess = {
@@ -54,14 +54,13 @@ function createGuessGrid() {
                 IsWinner: false,
             }
             db.collection(currentCollection()).add(guess).catch(err => console.log(err));
-        } else {
-            console.log("Failed to enter");
         }
         //console.log(arrNames)
     });
 }
 function createGuessTable() {
-    return document.createElement('table');
+    var grid = document.getElementById('guesstable');
+    return grid;
 }
 function createGrid(rowcount, colcount, callback ){
     var i=0;
@@ -70,6 +69,20 @@ function createGrid(rowcount, colcount, callback ){
         var tr = grid.appendChild(document.createElement('tr'));
         for (var c=0; c < colcount; c++){
             var cell = tr.appendChild(document.createElement('td'));
+
+            if (r === 0) {
+                cell.className = "border";
+                if (c === 0) continue;
+                cell.innerHTML = String.fromCharCode(64 + c); // ASCI table: 65 = A, 66 = B ...
+                continue;
+            }
+            if (c === 0) {
+                cell.className = "border";
+                if (r === 0) continue;
+                cell.innerHTML = r;
+                continue;
+            }
+
             cell.id = "cell" + i++;
             cell.addEventListener('click',(function(element ,row ,column ,i){
                 return function(){
@@ -98,6 +111,7 @@ function renderGuess(key, value, isWinner = false) {
             }
         }
     }
+    console.log(arrNames);
 }
 function currentCollection() {
     return "Round" + currentCollectionNumber;
