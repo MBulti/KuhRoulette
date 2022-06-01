@@ -4,10 +4,10 @@ let currentCollectionNumber = 1;
 let currentMode = 0; // 0 == addUser, 1 == selectWin
 var realTimeListener = startListener();
 var grid = createGuessGrid();
-var table = createGuessTable();
+//var table = createGuessTable();
 
-document.body.appendChild(grid);
-document.body.appendChild(table);
+//document.body.appendChild(grid);
+//document.body.appendChild(table);
      
 
 // frontend
@@ -46,6 +46,7 @@ function changeRound(value) {
     currentCollectionNumber = value;
     realTimeListener = startListener();
     grid = createGuessGrid(); 
+    renderTable();
 }
 function createGuessGrid() {
     return createGrid(11, 11, function(el,row,col,i) {
