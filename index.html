@@ -11,9 +11,17 @@
     <select id="roundselect" name="roundselect" class="select">
         <option value="1">Runde 1</option>
         <option value="">Neue Runde</option>
-    </select>
-    <table id="fieldgrid" class="grid"></table>
-    <table id="guesstable" class="table"></table>
+    </select><br>
+    <fieldset>
+        <legend>Modus auswählen</legend>
+        <input type="radio" id="addUser" name="markfield" value="new" checked>
+        <label for="addUser">Teilnehmer eintragen</label><br>
+        <input type="radio" id="selectWinner" name="markfield" value="win">
+        <label for="selectWinner">Siegerfeld auswählen</label><br>
+    </fieldset>
+    
+        <table id="guesstable" class="table"></table>
+        <table id="fieldgrid" class="grid"></table>
     
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>

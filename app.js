@@ -1,6 +1,7 @@
 // main
 var arrNames = [];
 let currentCollectionNumber = 1;
+let currentMode = 0; // 0 == addUser, 1 == selectWin
 var realTimeListener = startListener();
 var grid = createGuessGrid();
 var table = createGuessTable();
@@ -26,6 +27,14 @@ $('select[id=roundselect]').change(function() {
         changeRound(selectedValue);
     }
 });
+$('input[type=radio][name=markfield]').change(function() {
+    if (this.value == 'new') {
+        currentMode = 0;
+    }
+    else if (this.value == 'win') {
+        currentMode = 1;
+    }
+});
 function changeRound(value) {
     // remove old
     this.realTimeListener();
@@ -41,17 +50,30 @@ function changeRound(value) {
 function createGuessGrid() {
     return createGrid(11, 11, function(el,row,col,i) {
         let calcIndex = (row - 1) * 10 + (col - 1);
-        console.log("element:",el);
-        console.log("row:",row);
-        console.log("col:",col);
-    
-        let guessName = prompt("Bitte Namen eingeben für Feld " + String.fromCharCode(64 + col) + row + ":");
-        if (guessName) {
-    
+        
+        if (currentMode === 0) {
+            let guessName = window.prompt("Bitte Namen eingeben für Feld " + String.fromCharCode(64 + col) + row + ":");
+            if (guessName) {
+                const guess = {
+                    Index: calcIndex,
+                    Value: guessName,
+                    IsWinner: false,
+                }
+                db.collection(currentCollection()).add(guess).catch(err => console.log(err));
+            }
+        } else if (window.confirm("Soll das Feld " + String.fromCharCode(64 + col) + row + " als Gewinnerfeld markiert werden?")) {
             const guess = {
                 Index: calcIndex,
-                Value: guessName,
-                IsWinner: false,
+                Value: "",
+                IsWinner: true,
+            }
+            var currentWin = document.querySelector(".winner");
+            if (currentWin) {
+                let dataId = currentWin.getAttribute("dataId");
+                if (dataId) {
+                    db.collection(currentCollection()).doc(dataId).delete();
+                    currentWin.classList.remove("winner");
+                }
             }
             db.collection(currentCollection()).add(guess).catch(err => console.log(err));
         }
@@ -93,15 +115,15 @@ function createGrid(rowcount, colcount, callback ){
     }
     return grid;
 }
-function renderGuess(key, value, isWinner = false) {
+function renderGuess(key, value, isWinner, dataId) {
     let cell = document.getElementById("cell" + key);
     if (cell) {
-        cell.innerHTML = "X";
-
         if (isWinner) {
-            cell.className = "winner";
+            cell.setAttribute("dataId", dataId);
+            cell.classList.add("winner");
         }
         else {
+            cell.innerHTML = "X";
             if (arrNames[key] != null && arrNames[key].length > 0) {
                 cell.className = "multiclicked"
                 arrNames[key].push(value);
@@ -111,7 +133,6 @@ function renderGuess(key, value, isWinner = false) {
             }
         }
     }
-    console.log(arrNames);
 }
 function currentCollection() {
     return "Round" + currentCollectionNumber;
@@ -125,7 +146,7 @@ function startListener() {
         snapshot.docChanges().forEach(change => {
             if (change.type === "added") {
                 console.log("Add", change.doc.data());
-                renderGuess(change.doc.data().Index, change.doc.data().Value, change.doc.data().IsWinner)
+                renderGuess(change.doc.data().Index, change.doc.data().Value, change.doc.data().IsWinner, change.doc.id)
             }
             else if (change.type === "removed") {
                 console.log("Remove", change.doc.data());
