@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <!-- TODO: if we need any description here -->
     <p>SUS</p>
+    <select id="roundselect" name="roundselect" class="select">
+        <option value="1">Runde 1</option>
+        <option value="">Neue Runde</option>
+    </select>
+    <table id="fieldgrid" class="grid"></table>
     
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
     <script>      

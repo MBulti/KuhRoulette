@@ -14,3 +14,7 @@
     background-color:orange;
     font-weight:bold; color:green;
 }
+.grid td.winner {
+    background-color:blue;
+    font-weight:bold; color:green;
+}
