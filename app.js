@@ -77,12 +77,8 @@ function createGuessGrid() {
             }
             db.collection(currentCollection()).add(guess).catch(err => console.log(err));
         }
-        //console.log(arrNames)
+        console.log(arrNames)
     });
-}
-function createGuessTable() {
-    var grid = document.getElementById('guesstable');
-    return grid;
 }
 function createGrid(rowcount, colcount, callback ){
     var i=0;
@@ -131,26 +127,39 @@ function renderGuess(key, value, isWinner, dataId) {
                 cell.className = "clicked";
                 arrNames[key] = [value];
             }
+            renderTable();
         }
     }
 }
 function currentCollection() {
     return "Round" + currentCollectionNumber;
 }
+function renderTable() {
+    var grid = document.getElementById('guesstable');
+    grid.innerHTML = '';
+    for (let index = 0; index < arrNames.length; index++) {
+        const element = arrNames[index];
+        if (element) {
+            let fieldCol = index % 10;
+            let fieldRow = (index - fieldCol) / 10 + 1;
+            
+            const html = `<tr><td>${String.fromCharCode(65 + fieldCol)}</td><td>${fieldRow}</td><td class="name">${element}</td></tr>`;
+            grid.innerHTML += html;
+        }
+    }
+}
 
 // backend
 function startListener() {
-    console.log(currentCollection())
     return db.collection(currentCollection()).onSnapshot(snapshot => {
-        console.log(snapshot.docChanges());
         snapshot.docChanges().forEach(change => {
             if (change.type === "added") {
-                console.log("Add", change.doc.data());
+                // console.log("Add", change.doc.data());
                 renderGuess(change.doc.data().Index, change.doc.data().Value, change.doc.data().IsWinner, change.doc.id)
             }
-            else if (change.type === "removed") {
-                console.log("Remove", change.doc.data());
-            }
+            // else if (change.type === "removed") {
+            //     console.log("Remove", change.doc.data());
+            // }
         });
     });
 }
