@@ -6,6 +6,7 @@
     <title>Kuh-Roulette</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
     <p>SUS</p>
     <div id="settings">
@@ -16,7 +17,6 @@
                 <option value="">Neue Runde</option>
             </select>
         </fieldset>
-        
         <fieldset>
             <legend>Modus</legend>
             <input type="radio" id="addUser" name="markfield" value="new" checked>
@@ -26,26 +26,27 @@
         </fieldset>
     </div>
 
-        <table id="guesstable" class="table"></table>
-        <table id="fieldgrid" class="grid"></table>
-    
+    <table id="guesstable" class="table"></table>
+    <table id="fieldgrid" class="grid"></table>
+
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
-    <script>      
+    <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyB5__NA8-YTWeGOWiZoiaRWEwU7OWkkDBo",
-          authDomain: "kuhroulette.firebaseapp.com",
-          projectId: "kuhroulette",
-          storageBucket: "kuhroulette.appspot.com",
-          messagingSenderId: "333945955179",
-          appId: "1:333945955179:web:39d82fddb1036710a8222e"
+            apiKey: "AIzaSyB5__NA8-YTWeGOWiZoiaRWEwU7OWkkDBo",
+            authDomain: "kuhroulette.firebaseapp.com",
+            projectId: "kuhroulette",
+            storageBucket: "kuhroulette.appspot.com",
+            messagingSenderId: "333945955179",
+            appId: "1:333945955179:web:39d82fddb1036710a8222e"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-      </script>
-      <script src="./app.js"></script>
+    </script>
+    <script src="./app.js"></script>
 </body>
+
 </html>
