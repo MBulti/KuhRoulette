@@ -27,15 +27,21 @@
 .table td {
     height:30px;
     border:1px solid #ccc;
-    text-align:center;
-    font-family:sans-serif; font-size:13px
+    text-align: center;
+    font-family:sans-serif; font-size:15px
+}
+.table td.name {
+    padding-left: 5px;
+    text-align: start;
 }
 .settings,
 .data {
     display: flex;
 }
 fieldset{
+    border-radius: 10px;
     width: 50%;
     display: inline-block;
     box-sizing: border-box;
+    font-family:sans-serif; font-size:15px
 }

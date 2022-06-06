@@ -78,7 +78,7 @@ function createGuessGrid() {
             }
             db.collection(currentCollection()).add(guess).catch(err => console.log(err));
         }
-        console.log(arrNames)
+        //console.log(arrNames)
     });
 }
 function createGrid(rowcount, colcount, callback ){
@@ -120,7 +120,6 @@ function renderGuess(key, value, isWinner, dataId) {
             cell.classList.add("winner");
         }
         else {
-            cell.innerHTML = "X";
             if (arrNames[key] != null && arrNames[key].length > 0) {
                 cell.className = "multiclicked"
                 arrNames[key].push(value);
@@ -128,6 +127,7 @@ function renderGuess(key, value, isWinner, dataId) {
                 cell.className = "clicked";
                 arrNames[key] = [value];
             }
+            cell.innerHTML = arrNames[key].length + "x";
             renderTable();
         }
     }
@@ -144,7 +144,7 @@ function renderTable() {
             let fieldCol = index % 10;
             let fieldRow = (index - fieldCol) / 10 + 1;
             
-            const html = `<tr><td>${String.fromCharCode(65 + fieldCol)}</td><td>${fieldRow}</td><td class="name">${element}</td></tr>`;
+            const html = `<tr><td>${String.fromCharCode(65 + fieldCol)}${fieldRow}</td><td class="name">${element}</td></tr>`;
             grid.innerHTML += html;
         }
     }
