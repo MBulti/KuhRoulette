@@ -37,6 +37,10 @@
 .settings,
 .data {
     display: flex;
+    min-width: 50%;
+}
+.data .invisible {
+    display: none;
 }
 fieldset{
     border-radius: 10px;
