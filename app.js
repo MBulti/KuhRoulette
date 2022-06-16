@@ -142,6 +142,10 @@ function renderGuess(key, value, isWinner, dataId) {
         }
     }
 }
+function removeGuess(key) {
+    let cell = document.getElementById("cell" + key);
+    cell.classList.remove("winner");
+}
 function currentCollection() {
     return "Round" + currentCollectionNumber;
 }
@@ -168,9 +172,9 @@ function startListener() {
                 // console.log("Add", change.doc.data());
                 renderGuess(change.doc.data().Index, change.doc.data().Value, change.doc.data().IsWinner, change.doc.id)
             }
-            // else if (change.type === "removed") {
-            //     console.log("Remove", change.doc.data());
-            // }
+            else if (change.type === "removed" && change.doc.data().IsWinner) {
+                removeGuess(change.doc.data().Index)
+            }
         });
     });
 }

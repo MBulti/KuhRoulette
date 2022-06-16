@@ -26,6 +26,7 @@
 .data {
     display: flex;
     min-width: 50%;
+    align-items: flex-start;
 }
 .data .invisible {
     display: none;
