@@ -35,6 +35,16 @@ $('input[type=radio][name=markfield]').change(function() {
         currentMode = 1;
     }
 });
+$('input[type=radio][name=settingfield]').change(function() {
+    if (this.value == 'table') {
+        document.getElementById("guesstable").classList.remove("invisible");
+        document.getElementById("fieldlegend").classList.add("invisible");
+    }
+    else if (this.value == 'legend') {
+        document.getElementById("guesstable").classList.add("invisible");
+        document.getElementById("fieldlegend").classList.remove("invisible");
+    }
+});
 function changeRound(value) {
     // remove old
     this.realTimeListener();
