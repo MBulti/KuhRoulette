@@ -9,10 +9,9 @@
 </head>
 
 <body>
-    <p>SUS</p>
     <div class="settings">
         <fieldset>
-            <legend>Spielrunde</legend>
+            <legend>Spielrunde Kuh-Roulette</legend>
             <select id="roundselect" name="roundselect" class="select">
                 <option value="1">Runde 1</option>
                 <option value="">Neue Runde</option>
@@ -36,8 +35,17 @@
     <div class="data">
         <table id="fieldgrid" class="grid"></table>
         <table id="guesstable" class="table"></table>
-        <div id="fieldlegend" class="legend">
+        <div id="fieldlegend" class="legend invisible">
             <img src="./img/Logo SuS Buer neu.png" width="100" height="100">
+            <div class="legenddetail">
+                <div>Belegung einfach</div><div class="circle clicked"></div><br>
+            </div>
+            <div class="legenddetail">
+                <div>Belegung mehrfach</div><div class="circle multiclicked"></div><br>
+            </div>
+            <div class="legenddetail">
+                <div>Siegerfeld</div><div class="circle winner"></div><br>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
